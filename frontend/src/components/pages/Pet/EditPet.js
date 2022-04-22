@@ -18,13 +18,16 @@ function EditPet() {
 
   useEffect(() => {
     api
-      .get(`/pets/${id}`, {
+    .get(`/pets/${id}`, {
+      headers: {
         Authorization: `Bearer ${JSON.parse(token)}`
-      })
-      .then(response => {
-        setPet(response.data.pet);
-      });
-    }, [token, id]);
+      }
+    })
+    .then(response => {
+      setPet(response.data.pet);
+    });
+  }, [token, id]);
+
 
   async function updatePet(pet) {
     let msgType = 'success';
